@@ -11,7 +11,7 @@ PIWIK_TRACKCODE = """
 <!-- Piwik -->
 <script type="text/javascript">
     var pkBaseURL = "%(protocol)s://%(host)s/";
-    document.write(unescape("%%3Cscript src=pkBaseURL + 'piwik.js' type='text/javascript'%%3E%%3C/script%%3E"));
+    document.write(unescape("%%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%%3E%%3C/script%%3E"));
 </script>
 <script type="text/javascript">
     try {
