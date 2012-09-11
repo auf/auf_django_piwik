@@ -1,0 +1,22 @@
+# binaires
+*.pyc
+*.pyo
+
+# Fichier temporaires:
+.*.swp
+*~
+\#*#
+src/*
+
+# DB de dev
+*.db
+
+# restants de merge
+*.orig
+*.rej
+
+*-info
+doc/_*
+doc/build
+doc/pip-log.txt
+dist
