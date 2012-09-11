@@ -40,7 +40,6 @@ class TrackMiddleware:
                 'static': settings.STATIC_URL,
                 'referer': referer,
                 }
-        track += http_referer
         content = response.content
         content_with_trackcode = ire_body.sub('%s</body>' % track, content)
         response.content = content_with_trackcode
