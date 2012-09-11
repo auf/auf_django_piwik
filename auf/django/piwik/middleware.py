@@ -4,7 +4,7 @@ import re
 
 from django.conf import settings
 
-from settings import PIWIK_TOKEN, PIWIK_HOST, PIWIK_TRACKCODE
+from settings import PIWIK_TOKEN, PIWIK_HOST, PIWIK_HTTPFORCE, PIWIK_TRACKCODE
 
 ire_body = re.compile(re.escape('</body>'), re.IGNORECASE)
 
@@ -19,7 +19,7 @@ class TrackMiddleware:
         if PIWIK_TOKEN is None:
             return response
 
-        if request.is_secure():
+        if request.is_secure() and not PIWIK_HTTPFORCE:
             protocol = "https"
         else:
             protocol = "http"

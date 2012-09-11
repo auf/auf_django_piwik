@@ -4,7 +4,7 @@
 from django.conf import settings
 
 PIWIK_TOKEN = getattr(settings, 'PIWIK_TOKEN', None)
-
+PIWIK_HTTPFORCE = getattr(settings, 'PIWIK_HTTPFORCE', False)
 PIWIK_HOST = getattr(settings, 'PIWIK_HOST', 'auf.stats.mysnip-hosting.de')
 
 PIWIK_TRACKCODE = """

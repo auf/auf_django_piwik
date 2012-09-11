@@ -1,3 +1,8 @@
+1.2
+---
+
+* Ajout de PIWIK_HTTPFORCE pour que le protocle soit 'http' et non 'https'
+
 1.1
 ---
 
