@@ -1,3 +1,10 @@
+1.3
+---
+
+* Ne rien logger si on provient de id.auf.org
+
+* PIWIK_EXCLUDE_REFERER conf
+
 1.2
 ---
 

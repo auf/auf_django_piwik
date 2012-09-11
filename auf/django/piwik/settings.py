@@ -6,6 +6,9 @@ from django.conf import settings
 PIWIK_TOKEN = getattr(settings, 'PIWIK_TOKEN', None)
 PIWIK_HTTPFORCE = getattr(settings, 'PIWIK_HTTPFORCE', False)
 PIWIK_HOST = getattr(settings, 'PIWIK_HOST', 'auf.stats.mysnip-hosting.de')
+PIWIK_EXCLUDE_REFERER = (
+        'id.auf.org',
+        )
 
 PIWIK_TRACKCODE = """
 <!-- Piwik -->
@@ -16,6 +19,8 @@ PIWIK_TRACKCODE = """
 <script type="text/javascript">
     try {
         var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", %(token)s);
+        piwikTracker.disableCookies();
+        piwikTracker.setReferrerUrl('%(referer)s');
         piwikTracker.trackPageView();
         piwikTracker.enableLinkTracking();
     }
