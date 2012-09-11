@@ -1,1 +1,1 @@
-recursive-include auf/django/saml/static *
+recursive-include auf/django/piwik/static *
