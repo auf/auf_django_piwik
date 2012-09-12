@@ -19,7 +19,7 @@ PIWIK_TRACKCODE = """
 <script type="text/javascript">
     try {
         var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", %(token)s);
-        piwikTracker.disableCookies();
+        %(implantation)s
         piwikTracker.setReferrerUrl('%(referer)s');
         piwikTracker.trackPageView();
         piwikTracker.enableLinkTracking();

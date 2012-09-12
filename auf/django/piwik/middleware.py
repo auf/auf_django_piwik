@@ -4,8 +4,16 @@ import re
 
 from django.conf import settings
 
+try:
+    import auf.django.references.models as ref
+    REFERENCES_CHARGEES = True
+except:
+    REFERENCES_CHARGEES = False
+    
+
 from settings import PIWIK_TOKEN, PIWIK_HOST, PIWIK_HTTPFORCE,\
     PIWIK_TRACKCODE, PIWIK_EXCLUDE_REFERER
+
 
 ire_body = re.compile(re.escape('</body>'), re.IGNORECASE)
 
@@ -33,12 +41,20 @@ class TrackMiddleware:
         else:
             protocol = "http"
 
+        if REFERENCES_CHARGEES and request.user.is_authenticated():
+            employe = ref.Employe.objects.get(courriel=request.user.email)
+            imp_id = employe.implantation.id
+            implantation = "piwikTracker.setCustomVariable(1, 'implantation', '%s', 'visit');" % imp_id
+        else:
+            implantation = ""
+
         track = PIWIK_TRACKCODE % {
                 'host': PIWIK_HOST,
                 'token': PIWIK_TOKEN,
                 'protocol': protocol,
                 'static': settings.STATIC_URL,
                 'referer': referer,
+                'implantation': implantation,
                 }
         content = response.content
         content_with_trackcode = ire_body.sub('%s</body>' % track, content)
