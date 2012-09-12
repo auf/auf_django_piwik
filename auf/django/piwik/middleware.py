@@ -41,7 +41,8 @@ class TrackMiddleware:
         else:
             protocol = "http"
 
-        if REFERENCES_CHARGEES and request.user.is_authenticated():
+        user = getattr(request, 'user', None)
+        if user and REFERENCES_CHARGEES and user.is_authenticated():
             employe = ref.Employe.objects.get(courriel=request.user.email)
             imp_id = employe.implantation.id
             implantation = "piwikTracker.setCustomVariable(1, 'implantation', '%s', 'visit');" % imp_id
