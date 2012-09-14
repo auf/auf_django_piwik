@@ -41,6 +41,7 @@ class TrackMiddleware:
         else:
             protocol = "http"
 
+        implantation = ""
         user = getattr(request, 'user', None)
         if user and REFERENCES_CHARGEES and user.is_authenticated():
             try:
@@ -49,8 +50,6 @@ class TrackMiddleware:
                 implantation = "piwikTracker.setCustomVariable(1, 'implantation', '%s', 'visit');" % imp_id
             except :
                 pass
-        else:
-            implantation = ""
 
         track = PIWIK_TRACKCODE % {
                 'host': PIWIK_HOST,
