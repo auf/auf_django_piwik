@@ -25,7 +25,7 @@ class TrackMiddleware:
         Trackcode injection avant le body s'il y a un token piwik dans la conf
         locale.
         """
-        if PIWIK_TOKEN is None:
+        if PIWIK_TOKEN is None or response.get('Content-Type', '') != 'text/html':
             return response
 
         http_referer = request.META.get('HTTP_REFERER', "")
